@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}"> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container-xl text-center">
+        <h1 id="heading" style="color: #FF4301; font-weight: bold; font-family: 'Roboto', sans-serif;">Searchit</h1>
+    </div>
+    <div class="formwrapper w-75 mx-auto">
+        <form method="POST">
+            <div class="form-row">
+              <div class="col">
+                {{ form.username(class="form-control form-control-lg") }}
+              </div>
+              <div class="col">
+                {{ form.subreddit(class="form-control form-control-lg") }}
+              </div>
+            </div>
+            <div class="form-row" style="margin-top: 20px;">
+                <div class="col">
+                    {{ form.num_of_records(class="form-control form-control-lg") }}
+                </div>
+                <div class="col">
+                    {{ form.choice(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="form-row" style="margin-top: 20px;">
+                <div class="col">
+                    {{ form.query(class="form-control form-control-lg") }}
+                </div>
+            </div>
+            <div class="form-row" style="margin-top: 20px;">
+                <div class="col">
+                    {{ form.submit(class="btn btn-outline-info form-control-lg", style="background-color: #FF4301; border: none; color: white;") }}
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <div class="container w-75 mx-auto" style="margin-top: 40px;">
+        {% for item in data %}
+            <div class="container-fluid border" style="margin-top: 10px; border-radius: 10px;">
+                <div class="row">
+                    <h5 class="col" style="color: #FF4301; font-weight: bold;">{{ item['author'] }}</h5>
+                    
+                    <p class="col text-right" style="margin-right: 20px;">Time</p>
+                </div>
+                <h6 class="col" style="color: #FF4301; font-weight: bold;">r/{{ item['subreddit'] }}</h6>
+                <a href="{{item['url']}}" style="color: black; font-weight: bold;">{{ (item['title']) }}</a>
+                {% if item['domain'] == "i.redd.it" %}
+                    <div class="container">
+                        <img class="col rounded mx-auto d-block w-50" src="{{ item['url'] }}">
+                    </div>
+                {% endif %}
+                {% if choice=='post' %}
+                    <p class="col" style="margin-top: 10px;">{{ item['selftext'] }}</p>
+                {% else %}
+                    <p class="col" style="margin-top:10px">{{ item['body'] }}</p>
+                {% endif %}
+                
+
+                
+                               
+                
+            </div>
+        {% endfor %}
+        
+      
+      
+      
+      
+       
+     </div>
+   
+    
+
+
+   
+
+    
+
+      
+
+
+
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>
